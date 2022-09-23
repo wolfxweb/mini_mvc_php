@@ -2,21 +2,17 @@
 
 namespace App\Models\Usuarios;
 
-use App\Connection;
+use MF\Model\Model as Modelo;
 
-class UsuarioModel{
-    
+class UsuarioModel extends Modelo{
 
-    public  $conn;
 
-    public function __construct(){
-        $this->conn = Connection::getConection();
-    }
     public static function getUsuarios(){
-        $conn = Connection::getConection();
-        $query = "select * from usuario";
-        $response =  $conn->query($query)->fetchAll();
-      //  $conn->closeInstance();
-        return $response;
+        return self::selectSql("select * from usuario");
+    }
+
+    public static function setUsuario($usuario){
+       // echo $usuario;
+        self::insertSql($usuario);
     }
 }
