@@ -25,7 +25,7 @@ class IndexController extends Action{
     }
 
     public function sobreNos(){
-    $user = "Carlos eduardo lobo as";
+    $user = "ca";
     UsuarioModel::setUsuario($user);
    // $this->render('index/sobre_nos');
     }

@@ -16,6 +16,21 @@ class Route extends Bootstrap{
             'controller'=> 'IndexController',
             'action'=>'sobreNos'   
         );
+        $routes['cadastro_usuario'] =array(
+            'route'=> '/cadastro_usuario',
+            'controller'=> 'usuarioController',
+            'action'=>'getFomularioCadastro'   
+        );
+        $routes['adicionar_usuario'] =array(
+            'route'=> '/adicionar_usuario',
+            'controller'=> 'usuarioController',
+            'action'=>'setUsuario'   
+        );
+        $routes['login'] =array(
+            'route'=> '/login',
+            'controller'=> 'usuarioController',
+            'action'=>'getFormLogin'   
+        );
        $this->setRoutes($routes);
     }
 }

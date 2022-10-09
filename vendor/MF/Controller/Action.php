@@ -26,5 +26,6 @@ abstract class Action{
     protected  function content(){
       require_once"../App/View/".$this->view->page.".phtml";
     }
+    
 
 }

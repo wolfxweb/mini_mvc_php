@@ -1,0 +1,179 @@
+<?php
+// action="http://localhost:8000/adicionar_usuario" method="post"
+
+?>
+<div class="container ">
+    <div class="row justify-content-center align-items-center vh-100">
+        <div class="col-md-10 shadow-lg p-3 mb-5 bg-body rounded ">
+            <h1>Cadastro </h1>
+            <form   id="form_cadastro"  onsubmit="sendFormulario(event)" >
+                <div class="d-flex flex-row ">
+                    <div class="col-6 p-1">
+                        <label for="nome" class="form-label">Nome</label>
+                        <input type="text" class="form-control " id="nome" aria-describedby="nome" name="nome" value="">
+                        <div id="nomeFeedback" class="invalid-feedback"></div>
+                        <!--   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                    </div>
+                    <div class="col-6 p-1">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="text" class="form-control" id="email" aria-describedby="email" name="email">
+                        <div id="emailFeedback" class="invalid-feedback"></div>
+                        <!--   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                    </div>
+                </div>
+                <div class="d-flex flex-row ">
+                    <div class="col-6 p-1">
+                        <label for="celular" class="form-label">Telefone celular </label>
+                        <input type="text" class="form-control" id="celular" name="celular" onkeypress="maskCelular(this, formatCelular);" onblur="maskCelular(this, formatCelular);" >
+                        <div id="celuarFeedback" class="invalid-feedback"></div>
+                        <!--   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                    </div>
+                    <div class="col-6 p-1">
+                        <label for="telefone_fixo" class="form-label">Telefone fixo </label>
+                        <input type="text" class="form-control" id="telefone_fixo" name="telefone_fixo" onkeypress="maskTelefoneFixo(this, formatTelefoneFixo);" onblur="maskTelefoneFixo(this, formatTelefoneFixo);" >
+                        <div id="telefone_fixoFeedback" class="invalid-feedback"></div>
+                        <!--   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                    </div>
+                </div>
+                <div class="d-flex flex-row ">
+                    <div class=" col-6 p-1">
+                        <label for="cep" class="form-label">Cep</label>
+                        <input type="text" class="form-control" id="cep" name="cep"  onblur="getEnederecoPeloCep(this.value);" />
+                        <div id="cepFeedback" class="invalid-feedback"></div>
+                    </div>
+
+                    <div class=" col-6 p-1">
+                        <label for="rua" class="form-label">Rua</label>
+                        <input type="text" class="form-control" id="rua" name="rua">
+                        <div id="ruaFeedback" class="invalid-feedback"></div>
+                        <!--   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                    </div>
+                </div>
+                <div class="d-flex flex-row " id="div_alert">
+                    <div class=" col-12 p-1">
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert" >
+                            <strong>Não foi possivel encontrar o cep informado.</strong>
+                            <p>Digite manualmente o endereço ou digite um cep válido.</p>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-row "  >
+                    <div class="col-6 p-1">
+                        <label for="bairro" class="form-label">Bairro</label>
+                        <input type="text" class="form-control" id="bairro" name="bairro">
+                        <div id="bairroFeedback" class="invalid-feedback"></div>
+
+                    </div>
+                    <div class="col-6 p-1">
+                        <label for="cidade" class="form-label">Cidade</label>
+                        <input type="text" class="form-control" id="cidade" name="cidade">
+                        <div id="cidadeFeedback" class="invalid-feedback"></div>
+                        <!--   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                    </div>
+                </div>
+                <div class="d-flex flex-row ">
+                    <div class=" col-6 p-1">
+                        <label for="estado" class="form-label">Estado</label>
+                        <input type="text" class="form-control" id="estado" name="estado">
+                        <p id="estado_invalid"  hidden >Campo nome e obrigatorio</p>
+
+                    </div>
+                    <div class=" col-6 p-1">
+                        <label for="numero" class="form-label">Numero</label>
+                        <input type="text" class="form-control" id="numero" name="numero">
+                        <p id="numero_invalid"  hidden >Campo nome e obrigatorio</p>
+                        <!--   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                    </div>
+                </div>
+                <div class="d-flex flex-row ">
+                    <div class="col-12 p-1">
+                        <label for="complemento" class="form-label">Complemento</label>
+                        <input type="text" class="form-control" id="complemento" name="complemento">
+                        <div id="complementoFeedback" class="invalid-feedback"></div>
+                    </div>
+                </div>
+                <div class="col-md-12 p-1">
+                    <label for="senha" class="form-label">Senha</label>
+                    <input type="text" class="form-control" id="senha" name="senha">
+                    <div id="senhaFeedback" class="invalid-feedback"></div>
+                    <!--   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                </div>
+                <!--
+                <div class="col-md-12 p-1">
+                    <label for="senha_confirma" class="form-label">Confrime a senha</label>
+                    <input type="text" class="form-control" id="senha_confirma">
+                    <div id="senha_confrimaFeedback" class="invalid-feedback"></div>
+                </div>
+-->
+                <div class="float-end"><button type="submit" class="btn btn-primary" id="bnt_cadastro" ><span hidden id="btn_load"class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Avançar</button></div><br><br>
+                
+            </form>
+        </div>
+    </div>
+    <div>
+  <!--  fim/ inicio-->
+        <div class="container ">
+            <div class="row justify-content-center align-items-center vh-100">
+                <div class="col-md-10 shadow-lg p-3 mb-5 bg-body rounded ">
+                    <h1>Configuração do sitema </h1>
+                    <form>
+                        <div class="d-flex flex-row ">
+                            <div class="col-md-6 p-1">
+                                <label for="nome" class="form-label">Razão social</label>
+                                <input type="text" class="form-control" id="nome" aria-describedby="nome">
+                                <!--   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                            </div>
+                            <div class="col-md-6 p-1">
+                                <label for="email" class="form-label">Nome do reponsavel</label>
+                                <input type="email" class="form-control" id="email"
+                                    aria-describedby="emailHelp">
+                                <!--   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row ">
+                            <div class="col-md-4 p-1">
+                                <label for="plano" class="form-label">Selecione o plano</label>
+                                <select class="form-select" aria-label="Default select example" id="plano">
+                                    <option value="1">Plano 1 </option>
+                                    <option value="2">Plano 2 </option>
+                                    <option value="3">Plano 3 </option>
+                                </select>
+                            </div>
+                            <div class="col-md-8 p-1">
+                                <label for="url" class="form-label">Url </label>
+
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">www.</span>
+                                    <input type="text" class="form-control" id="url">
+                                    <span class="input-group-text">.localhost:8000</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 p-1">
+
+                        </div>
+                        <div class="float-end"><button type="submit" class="btn btn-primary">Finalizar</button></div>
+                        <br><br>
+                    </form>
+                </div>
+            </div>
+            <div>
+        <!--  fim/ inicio-->
+        <div class="container ">
+            <div class="row justify-content-center align-items-center vh-100">
+                <div class="col-md-10 shadow-lg p-3 mb-5 bg-body rounded ">
+                    <h1>Cadastro finalizado</h1>
+                    <form>
+                        <p>Sua conta foi criada com sucesso</p>
+
+                        <p>A url para voce acessar o sistema e esta ; </p>
+                        <p>O usuário adminstrado é : </p>           
+                        <div class="float-end"><button type="submit" class="btn btn-primary">Acessar o sistema</button></div>
+                        <br><br>
+                    </form>
+                </div>
+            </div>
+            <div>
+<script src="/js/usuario.js"></script>

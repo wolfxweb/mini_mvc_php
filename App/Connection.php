@@ -16,8 +16,10 @@ class Connection{
             
         } catch (\PDOException $e) {
            
-            echo "ops sem conecção com banco de dados";
+            echo 'Error Connection : ' . $e->getMessage();
 
         }
     }
+
+   
 }
