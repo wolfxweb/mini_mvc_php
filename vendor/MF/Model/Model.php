@@ -15,6 +15,7 @@ abstract class Model extends Connection {
       //  return Connection::getConection();
     }
    
+    
 
     protected static function selectSql($query){
         $conn = Connection::getConection();
@@ -29,7 +30,7 @@ abstract class Model extends Connection {
 
           foreach ($param as $key => $value) {
              $keyAjust =$key+1;
-            $stmt->bindParam($keyAjust, $value);
+             $stmt->bindParam($keyAjust, $value);
           }
           
           var_dump( $stmt );

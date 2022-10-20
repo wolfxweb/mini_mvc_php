@@ -11,7 +11,6 @@ class UsuariosClass extends UsuarioModel{
     private $email;
     private $celular;
     private $telefone_fixo;
-
     private $cep;
     private $rua;
     private $bairro;

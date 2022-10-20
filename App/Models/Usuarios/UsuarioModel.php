@@ -10,7 +10,8 @@ class UsuarioModel extends Modelo{
 
 
     public static function getUsuarios(){
-        return self::selectSql("select * from usuario");
+
+        return self::selectSql("select * from usuarios");
     }
 
     public static function setUsuario($usuario){
