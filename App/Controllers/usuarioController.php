@@ -8,11 +8,13 @@ use App\Classes\UsuariosClass;
 
 use MF\Controller\Action;
 
+use App\Classes\CategoriasClass;
 
 class usuarioController extends Action{
 
     public function getFomularioCadastro(){
-        $this->render('usuarios/cadasto');
+        $this->view->dados= CategoriasClass::getStatus('AT');
+        $this->render('usuarios/cadastro_usuario');
     }
     public function getFormLogin(){
         $this->render('usuarios/login');
