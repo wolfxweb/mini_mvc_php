@@ -21,10 +21,13 @@ class Connection{
            $porta= '3306'; 
            $conexao =new \PDO("mysql:host=$endereco;port=$porta;dbname=$banco;user=$usuario_banco;password=$senha");
            /*
+          $endereco="localhost";
+          $banco = 'mcv';
+
            $conexao = new \PDO(
                 "mysql:dbname=$banco;host=$ip",
-                "mvc",
-                "wolf"
+                "root",
+                ""
             );
             */
            //echo "conn";

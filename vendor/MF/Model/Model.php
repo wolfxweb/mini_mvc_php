@@ -24,26 +24,9 @@ abstract class Model extends Connection {
     }
     protected static function insertSql($query,$param){
         try {
-          var_dump('insertSql');
-          $conn = Connection::getConection();
+          $conn = Connection::getConection();  
           $stmt   = $conn->prepare($query);
-
-          foreach ($param as $key => $value) {
-             $keyAjust =$key+1;
-             $stmt->bindParam($keyAjust, $value);
-          }
-          
-          var_dump( $stmt );
-       //   var_dump($param);
-
-
-          /*
-            $conn = Connection::getConection();
-            $stmt   = $conn->prepare("INSERT INTO usuario (usu_name) VALUES (?)");
-            $stmt->bindParam(1, $query);
-            $stmt->execute();
-          */
-        //  $conn->close();
+          $stmt->execute();
         } catch (\PDOException $e) {
             echo 'Error: ' . $e->getMessage();
         }

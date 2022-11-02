@@ -9,28 +9,24 @@ class UsuariosClass extends UsuarioModel{
    
     private $nome;
     private $email;
-    private $password;
+    private $senha;
     private $statusId;
     private $usuarioTipo;
+    private $usuResetToken;
 
+    public function __construct(){
 
-    function __construct($post) {
-   
-        
-    } 
-
-    public function saveUsuario(){
-
-       // $query = "INSERT INTO usuario (nome,email,celular,telefone_fixo,cep,rua,bairro,cidade,estado,numero,complemento,senha) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
-        $param =[
-           
-        ];
-        $this->insertUsuario($param);
-      
-
-        var_dump('save');
     }
+    public static function isValidoEmail($email){
+        $stmSQL  = "select count(usu_email) as usu_email from usuarios usu  where usu_email ="."'".$email."'";
+        return self::selectSql($stmSQL);
+    }
+    public  function saveUsuario(){
+       return self::insertUsuario();  
+     }
 
+
+  
    
 
   
@@ -76,26 +72,6 @@ class UsuariosClass extends UsuarioModel{
     }
 
     /**
-     * Get the value of password
-     */ 
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
-     * Set the value of password
-     *
-     * @return  self
-     */ 
-    public function setPassword($password)
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
      * Get the value of statusId
      */ 
     public function getStatusId()
@@ -131,6 +107,46 @@ class UsuariosClass extends UsuarioModel{
     public function setUsuarioTipo($usuarioTipo)
     {
         $this->usuarioTipo = $usuarioTipo;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of senha
+     */ 
+    public function getSenha()
+    {
+        return $this->senha;
+    }
+
+    /**
+     * Set the value of senha
+     *
+     * @return  self
+     */ 
+    public function setSenha($senha)
+    {
+        $this->senha = $senha;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of usuResetToken
+     */ 
+    public function getUsuResetToken()
+    {
+        return $this->usuResetToken;
+    }
+
+    /**
+     * Set the value of usuResetToken
+     *
+     * @return  self
+     */ 
+    public function setUsuResetToken($usuResetToken)
+    {
+        $this->usuResetToken = $usuResetToken;
 
         return $this;
     }

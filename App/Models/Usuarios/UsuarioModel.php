@@ -3,8 +3,12 @@
 namespace App\Models\Usuarios;
 
 use MF\Model\Model as Modelo;
+use App\Classes\UsuariosClass;
+use App\Connection;
 
 class UsuarioModel extends Modelo{
+    private $conn;
+    public function __construct(){}
 
     public static function getUsuarios($id = null){
        // este metodo pode ser passado o paramentro id para filtar pro um  usuario especifico
@@ -17,18 +21,33 @@ class UsuarioModel extends Modelo{
         }
         return self::selectSql($stmSQL);
     }
-
-    public static function setUsuario($usuario){
-       // echo $usuario;
-      //  self::insertSql($usuario);
+    
+    public  function verificaEmailCadastrado($email){
+        $stmSQL  = "select count(usu_email) as usu_email from usuarios usu  where usu_email ="."'".$email."'";
+        return self::selectSql($stmSQL);
     }
 
-    protected function insertUsuario($param){
-        var_dump($param);
-     $query = "INSERT INTO usuarios (usu_nome,usu_email,usu_password,usu_reset_token,sta_id,usut_id) VALUES (?,?,?,?,?,?)";
-     $this->insertSql($query,$param);
+  
 
+
+    protected function insertUsuario(){
+
+      try {
+        $query = "INSERT INTO usuarios (usu_nome,usu_email,usu_password, sta_id, usut_id) VALUES (?,?,?,?,?)";
+        $conn = Connection::getConection();  
+        $stmt   = $conn->prepare($query);
+        $stmt->bindParam(1, $_POST['nome']);
+        $stmt->bindParam(2, $_POST['email']);
+        $stmt->bindParam(3, $_POST['senha']);
+        $stmt->bindParam(4, $_POST['status'],\PDO::PARAM_INT);
+        $stmt->bindParam(5, $_POST['usuarioTipo'],\PDO::PARAM_INT);
+        return  $stmt->execute();
+        
+      } catch (\PDOException $e) {
+          echo 'Error: ' . $e->getMessage();
+      }
     }
+
 
 
 }

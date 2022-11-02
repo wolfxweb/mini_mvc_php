@@ -29,17 +29,5 @@ class CategoriasClass extends Modelo{
         }
         return self::selectSql($stmSQL);
     }
-    public static function getStatus( String $statusSigla = ""){
-        var_dump($statusSigla);
-        /*
-         este metodo pode ser passado o paramentro id para filtar pro um  por uma categora em especifica
-         ou filtrar pelo  status passando um a sigla a ser filtrada
-         */
-        $stmSQL  = "select * from  status sta ";
-         if(!empty($statusSigla[0])){
-             $stmSQL .= " where sta.sta_sigla = "."'". $statusSigla."'";
-            // $stmSQL .= " where sta.sta_sigla ='{$statusSigla}'";
-         }
-         return self::selectSql($stmSQL);
-     }
+    
 }

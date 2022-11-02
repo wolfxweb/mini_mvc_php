@@ -2,49 +2,35 @@
 
 namespace App\Controllers;
 
-use App\Models\Usuarios\UsuarioModel;
-
-use App\Classes\UsuariosClass;
-
 use MF\Controller\Action;
-
-use App\Classes\CategoriasClass;
+use  App\Traits\UsuarioTrait;
 
 class usuarioController extends Action{
 
+    use  UsuarioTrait;//todas as funcionalidades do usuário devem ser implentada na trait pois se precisa em outra classe e so utlizar o use e ja fica disponivel;
+
+    
+
     public function getFomularioCadastro(){
-        $this->view->dados= CategoriasClass::getStatus('AT');
-        $this->render('usuarios/cadastro_usuario');
+       $data = $this->getSelectUsuarioTipoStatus("","","");// esta função pode ser passado filtros por parametros 
+       /*
+        Organizar o array da view conforme abaixo vai facilitar a montagem da tela
+       */
+       $dados['status']= $data['status']; 
+       $dados['usuario_tipo']= $data['usuario_tipo']; 
+       $this->view->dados = $dados  ;
+       $this->render('usuarios/cadastro_usuario');    
     }
     public function getFormLogin(){
         $this->render('usuarios/login');
     }
 
     public function setUsuario(){
-        $camposObrigatorios = ['nome', 'email','cep','senha'];
-      
-        var_dump($_POST);
-        if($_POST['nome'] == ""){
-            echo "Campo nome é obrigatorio";
-            return;
-        }
-        if($_POST['email'] == ""){
-            echo "Campo e-mail obrigatorio";
-            return;
-        }
-        if($_POST['cep'] == ""){
-            echo "Campo senha obrigatorio";
-            return;
-        }
-        if($_POST['senha'] == ""){
-            echo "Campo senha obrigatorio";
-            return;
-        }
-        $user  = new UsuariosClass($_POST);
-       // echo "usewr";
-       $user->saveUsuario();
-      
-       // echo $_POST;
+
+       $_POST = json_decode(file_get_contents('php://input'), true);
+       $this->novoUsuarios();
+        
+   
     }
 
 
