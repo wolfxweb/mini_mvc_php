@@ -14,7 +14,7 @@ class usuarioController extends Action{
     public function getFomularioCadastro(){
        $data = $this->getSelectUsuarioTipoStatus("","","");// esta função pode ser passado filtros por parametros 
        /*
-        Organizar o array da view conforme abaixo vai facilitar a montagem da tela
+          Organizar o array da view conforme abaixo vai facilitar a montagem da tela
        */
        $dados['status']= $data['status']; 
        $dados['usuario_tipo']= $data['usuario_tipo']; 

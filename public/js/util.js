@@ -53,3 +53,27 @@ function formatTelefoneFixo(v) {
 }
 /** fim das funções de mascara telefone */
 
+function mostrarOcultarElemento(id){
+  /*
+    o id a ser passado para este função e do elemento oculto e a função deve ser chamada no elemento visivel 
+    exemplo no menu
+  */
+      let ulBloc = document.getElementById(id);
+      if( ulBloc.classList.contains('d-none')){
+          ulBloc.classList.remove("d-none");
+      }else{
+          ulBloc.classList.add("d-none");
+      }
+    
+  }
+
+ var offcanvasElementList = [].slice.call(document.querySelectorAll('.offcanvas'))
+var offcanvasList = offcanvasElementList.map(function (offcanvasEl) {
+  return new bootstrap.Offcanvas(offcanvasEl)
+})
+
+  function mostarModalcadastro(){
+    console.log("canva")
+
+
+  }

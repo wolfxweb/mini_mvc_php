@@ -1,0 +1,39 @@
+<div>
+    <script src="../js/painelAdm.js"></script>
+    <nav class="navbar sticky-top bg-light shadow p-3 mb-4 bg-body rounded">
+        <div class="container-fluid">
+            <a class="navbar-brand" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
+                aria-controls="offcanvasScrolling"><i class="bi-list" style="font-size: 1.5rem;"></i></a>
+            <a class="navbar-brand" href="#" onclick="Rota('adm')">Sistema lista compras</a>
+            <a class="navbar-brand"><i class="bi-person" style="font-size: 1.5rem;"></i></a>
+        </div>
+    </nav>
+    <div class="offcanvas offcanvas-start shadow  bg-body rounded border border-0" data-bs-scroll="true"
+        data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Sistema de lista de compras</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <hr>
+        <div class="offcanvas-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" onclick="Rota('adm')">Home</li>
+                <li class="list-group-item" onclick="mostrarOcultarElemento('ulProdutos')" >
+                    Produtos
+                </li>
+                <div>
+                    <ul class="list-group mt-2 mb-2 " id="ulProdutos">
+                        <li class="list-group-item" onclick="Rota('adm/categorias')">Categoria</li>
+                        <li class="list-group-item" onclick="Rota('adm/unidade_medida')">Unidade Medida</li>
+                        <li class="list-group-item" onclick="Rota('adm/fabricante')">Fabricante</li>
+                        <li class="list-group-item" onclick="Rota('adm/produto')">Produto</li>
+
+                    </ul>
+                </div>
+                <li class="list-group-item">Pedido</li>
+                <li class="list-group-item">Distribuidor</li>
+                <li class="list-group-item">Usuários</li>
+            </ul>
+        </div>
+    </div>
+</div>

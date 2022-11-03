@@ -1,0 +1,49 @@
+<?php include("menu_adm.phtml");?>
+
+<div class="container" tabindex="-1">
+    <script src="../js/categorias.js"></script>
+    <nav class="navbar  bg-light shadow p-3 mb-2 bg-body rounded">
+        <h4>Gerenciamento das Categorias</h4>
+        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasRight-categoria" aria-controls="offcanvasRight-categoria">Adicionar</button>
+    </nav>
+    <div class="offcanvas offcanvas-end shadow  bg-body rounded border border-0 " data-bs-backdrop="false" tabindex="-1"
+        id="offcanvasRight-categoria" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title " id="offcanvasRightLabel"></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+
+        <div class="offcanvas-body pt-4">
+            <form class="pt-2" onsubmit="sendFormulario(event)">
+                <h5>Cadastro categoria</h5>
+                <div class="col-12 p-1">
+                    <label for="nome" class="form-label">Nome</label>
+                    <input type="text" class="form-control " id="nome" aria-describedby="nome" name="nome" value="">
+                    <div id="nomeFeedback" class="invalid-feedback"></div>
+                    <!--   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                </div>
+                <div class="col-12 p-1">
+                    <label for="descricao" class="form-label">Descrição</label>
+                    <input type="text" class="form-control " id="descricao" aria-describedby="descricao"
+                        name="descricao" value="">
+                    <div id="descricaoFeedback" class="invalid-feedback"></div>
+                    <!--   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                </div>
+                <div class="col-12 p-1">
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <div class="bg-light shadow p-3 mb-2 mt-4 bg-body rounded">
+
+        <h4>Categorias</h4><br>
+        <h4>Categorias</h4><br>
+        <h4>Categorias</h4><br>
+        <h4>Categorias</h4><br>
+        <h4>Categorias</h4><br>
+    </div>
+
+</div>

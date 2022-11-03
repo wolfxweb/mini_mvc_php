@@ -29,6 +29,9 @@ class IndexController extends Action{
     UsuarioModel::setUsuario($user);
    // $this->render('index/sobre_nos');
     }
+    public function page404(){
+      $this->render('index/page404');
+    }
 
   
 }
