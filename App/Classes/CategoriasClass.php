@@ -29,5 +29,21 @@ class CategoriasClass extends Modelo{
         }
         return self::selectSql($stmSQL);
     }
-    
+  public static function addCategoria($data){
+
+    $nome = $data['nome'];
+    $descricao =$data['descricao'];
+    //INSERT INTO appLista.categorias (cat_id, cat_nome, cat_descricao, cat_padrao) VALUES(0, '', '', false);
+    try {
+        $query = "INSERT INTO categorias(cat_nome,cat_descricao) VALUES ('$nome','$descricao')";
+        self::insertSql($query);
+        
+      } catch (\PDOException $e) {
+          echo  $e->getMessage();
+      }
+
+    echo json_encode($data);
+    return  false;
+  }
+
 }

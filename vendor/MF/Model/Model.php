@@ -22,11 +22,13 @@ abstract class Model extends Connection {
         $response =  $conn->query($query)->fetchAll();
         return $response;
     }
-    protected static function insertSql($query,$param){
+    protected static function insertSql($query){
+      /** esta função e generica 
+       * no Usuario model tem um exemplo com prepare 
+       */
         try {
           $conn = Connection::getConection();  
-          $stmt   = $conn->prepare($query);
-          $stmt->execute();
+          $conn->exec($query);
         } catch (\PDOException $e) {
             echo 'Error: ' . $e->getMessage();
         }

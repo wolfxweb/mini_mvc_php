@@ -14,22 +14,22 @@ class Connection{
            $porta= '5432'; */
 
            //$conexao =new \PDO("pgsql:host=$endereco;port=$porta;dbname=$banco;user=$usuario_banco;password=$senha");
-           $endereco = 'database-app-mysql.crrjtkq5nq1n.us-east-1.rds.amazonaws.com';
+       /*    $endereco = 'database-app-mysql.crrjtkq5nq1n.us-east-1.rds.amazonaws.com';
            $banco = 'appMysql';
            $usuario_banco = 'root';
            $senha ='database-mysql';
            $porta= '3306'; 
-           $conexao =new \PDO("mysql:host=$endereco;port=$porta;dbname=$banco;user=$usuario_banco;password=$senha");
-           /*
+           $conexao =new \PDO("mysql:host=$endereco;port=$porta;dbname=$banco;user=$usuario_banco;password=$senha");*/
+           
           $endereco="localhost";
-          $banco = 'mcv';
+          $banco = 'appLista';
 
            $conexao = new \PDO(
-                "mysql:dbname=$banco;host=$ip",
+                "mysql:dbname=$banco;host=$endereco",
                 "root",
                 ""
             );
-            */
+            
            //echo "conn";
            return $conexao ;
             

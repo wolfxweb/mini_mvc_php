@@ -68,7 +68,7 @@
                         <label for="status" class="form-label">Status</label>
                         <select id="status" name="status" class="form-select" aria-label="Default select example">
                           <?php foreach($this->view->dados['status'] as $tipo){  ?>
-                              <option value="<?php echo $tipo['id'] ?>"><?php echo $tipo['sta_nome'] ?></option>
+                              <option value="<?php echo $tipo['sta_id'] ?>"><?php echo $tipo['sta_nome'] ?></option>
                            <?php };  ?>
                         </select>
                     </div>
