@@ -14,18 +14,51 @@ class CategoriasController  extends Action {
     use CategoriaTrait;
 
     public function loadTelaCategoria(){
+
+       // $this->render('painel_adm/categoria_home');  
+        $catFiltro = $_REQUEST['catFiltro']??null;
+        if(!empty($catFiltro)){
+            $this->view->dados = CategoriasClass::filtrarCategoria($catFiltro);
+          //  $this->render('painel_adm/categoria_home');  
+        }else{
+            $this->view->dados = CategoriasClass::getCategorias();
+        }
+       
         $this->render('painel_adm/categoria_home');  
+       
     }
     public function cadastroCategoria(){
 
        $data  = json_decode(file_get_contents('php://input'), true);
-  
        if(!$this->minCaracteres($data['nome'], 2)){
         echo json_encode('Nome categoria deve ter no minimo 3 caracter.');
         return  false;
        }
-       CategoriasClass::addCategoria($data);
-   
-       
+       CategoriasClass::addCategoria($data);  
+    }
+
+    public function edicaoCategoria(){
+       $data  = json_decode(file_get_contents('php://input'), true);
+       if(!$this->minCaracteres($data['cat_nome'], 2)){
+        echo json_encode('Nome categoria deve ter no minimo 3 caracter.');
+        return  false;
+       }
+       CategoriasClass::updateCategoria($data);  
+    }
+
+    public function deleteCategoria(){
+        $data  = json_decode(file_get_contents('php://input'), true);
+
+        $categoria = CategoriasClass::getCategorias($data['cat_id']);
+        if(!empty($categoria[0])){
+            CategoriasClass::deleteCategoria($data);
+        }else{
+            echo json_encode('Categoria não encontrada.');
+        } 
+    }
+    public function filtrarCategoria(){
+        $data  = json_decode(file_get_contents('php://input'), true);
+        $this->view->dados= CategoriasClass::getCategorias(5);
+        $this->render('painel_adm/categoria_home');  
     }
 }

@@ -47,6 +47,21 @@ class Route extends Bootstrap{
             'controller'=> 'CategoriasController',
             'action'=>'cadastroCategoria'   
         );
+        $routes['edicao_categoria'] =array(
+            'route'=> '/adm/edicao_categoria',
+            'controller'=> 'CategoriasController',
+            'action'=>'edicaoCategoria'   
+        );
+        $routes['delete_categoria'] =array(
+            'route'=> '/adm/delete_categoria',
+            'controller'=> 'CategoriasController',
+            'action'=>'deleteCategoria'   
+        );
+        $routes['filtrar_categoria'] =array(
+            'route'=> '/adm/filtrar_categoria',
+            'controller'=> 'CategoriasController',
+            'action'=>'filtrarCategoria'   
+        );
          /** rotas unidade mendidas */
         $routes['unidade_medida'] =array(
             'route'=> '/adm/unidade_medida',

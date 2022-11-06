@@ -21,7 +21,7 @@ abstract class Action{
 
       $this->view->page = $view;
       require_once"../App/View/".$layout.".phtml";
-      // $this->content();
+     // $this->content();
     }
     protected  function content(){
       require_once"../App/View/".$this->view->page.".phtml";

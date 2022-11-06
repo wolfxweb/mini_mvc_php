@@ -1,7 +1,7 @@
 <?php include("menu_adm.phtml");?>
 
 <div class="container" tabindex="-1">
-    
+
     <script src="../js/categorias.js"></script>
     <nav class="navbar  bg-light shadow p-3 mb-2 bg-body rounded">
         <h4>Gerenciamento das Categorias</h4>
@@ -11,7 +11,7 @@
     <div class="offcanvas offcanvas-end shadow  bg-body rounded border border-0 " data-bs-backdrop="false" tabindex="-1"
         id="offcanvasRight-categoria" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
-            <h5 class="offcanvas-title " id="offcanvasRightLabel"></h5>
+
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
 
@@ -39,12 +39,106 @@
         </div>
     </div>
     <div class="bg-light shadow p-3 mb-2 mt-4 bg-body rounded">
+        <form  >
+        <div class="input-group mb-3">
+            <input id="catFiltro" type="text" class="form-control" placeholder="Localizar categoria" >
+            <button class="btn btn-outline-secondary" type="button"  onclick="filtrarCategoria()" id="button-addon2"><i class="bi bi-search"></i></button>
+        </div>
+        <form>
+        <table class="table table-hover" >
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody  >
+                <?php
+        foreach( $this->view->dados  as $d){  
+            $d
+            ?>
+                <tr class="tr-categoria">
+                    <th scope="row"><?php echo $d['cat_id'] ?></th>
+                    <td class="cat_id<?php  echo $d['cat_id'] ?>"> <?php  echo $d['cat_nome']  ?></td>
+                    <td class="cat_descricao<?php  echo $d['cat_id'] ?>"> <?php  echo $d['cat_descricao']  ?></td>
+                    <td>
+                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example">
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#modalCat<?php  echo $d['cat_id'] ?>"><i
+                                    class="bi bi-trash"></i></button>
+                            <button type="button" class="btn btn-success"
+                                onclick="editCategoria(<?php echo $d['cat_id'] ?>)"><i
+                                    class="bi bi-pencil"></i></button>
+                        </div>
+                    </td>
+                    <!-- Modal -->
+                    <div class="modal fade" id="modalCat<?php  echo $d['cat_id'] ?>" data-bs-backdrop="static"
+                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Excluir categoria</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <h6>Deseja mesmo excluir a categoria <?php  echo $d['cat_nome']  ?>?</h6>
+                                    <p>Esta ação e ireversivel.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-danger"
+                                        onclick="deletarCategoria(<?php echo $d['cat_id'] ?>)">Excluir</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <INPUT TYPE="hidden" id="cat_id<?php  echo $d['cat_id'] ?>" NAME="catEdit" VALUE=""
+                        catNome=" <?php  echo $d['cat_nome']  ?>" catDescricao="<?php  echo $d['cat_descricao']  ?>">
+                </tr>
+                <?php    }?>
+            </tbody>
+        </table>
 
-        <h4>Categorias</h4><br>
-        <h4>Categorias</h4><br>
-        <h4>Categorias</h4><br>
-        <h4>Categorias</h4><br>
-        <h4>Categorias</h4><br>
     </div>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEditar-categoria" data-bs-backdrop="false"
+        aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header pt-4">
+            <button type="button" class="btn-close" onclick="closeCanva()" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
 
+            <form class="pt-2" onsubmit="saveCategoriaEditada()">
+                <h5>Edição categoria</h5>
+                <div class="col-12 p-1">
+                    <label for="cat_id" class="form-label">ID </label>
+                    <input type="text" class="form-control " id="cat_id" aria-describedby="cat_id" name="cat_id"
+                        value="" disabled>
+                    <div id="nomeFeedback" class="invalid-feedback"></div>
+                    <!--   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                </div>
+                <div class="col-12 p-1">
+                    <label for="cat_nome" class="form-label">Nome</label>
+                    <input type="text" class="form-control " id="cat_nome" aria-describedby="cat_nome" name="cat_nome"
+                        value="">
+                    <div id="nomeFeedback" class="invalid-feedback"></div>
+                    <!--   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                </div>
+                <div class="col-12 p-1">
+                    <label for="cat_descricao" class="form-label">Descrição</label>
+                    <input type="text" class="form-control " id="cat_descricao" aria-describedby="cat_descricao"
+                        name="descricao" value="">
+                    <div id="descricaoFeedback" class="invalid-feedback"></div>
+                    <!--   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                </div>
+                <div class="col-12 p-1">
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
 </div>
