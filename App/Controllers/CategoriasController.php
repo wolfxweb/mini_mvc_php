@@ -18,13 +18,16 @@ class CategoriasController  extends Action {
        // $this->render('painel_adm/categoria_home');  
         $catFiltro = $_REQUEST['catFiltro']??null;
         if(!empty($catFiltro)){
-            $this->view->dados = CategoriasClass::filtrarCategoria($catFiltro);
-          //  $this->render('painel_adm/categoria_home');  
+           $this->view->dados = CategoriasClass::filtrarCategoria($catFiltro);
+           $this->view->reload =  true;
+         //  echo json_encode(CategoriasClass::filtrarCategoria($catFiltro));
+           $this->render('painel_adm/categoria_home');  
         }else{
             $this->view->dados = CategoriasClass::getCategorias();
+            $this->render('painel_adm/categoria_home');  
         }
        
-        $this->render('painel_adm/categoria_home');  
+       // $this->render('painel_adm/categoria_home');  
        
     }
     public function cadastroCategoria(){
@@ -57,8 +60,10 @@ class CategoriasController  extends Action {
         } 
     }
     public function filtrarCategoria(){
-        $data  = json_decode(file_get_contents('php://input'), true);
-        $this->view->dados= CategoriasClass::getCategorias(5);
-        $this->render('painel_adm/categoria_home');  
+       // $data  = json_decode(file_get_contents('php://input'), true);
+       $catFiltro = $_REQUEST['catFiltro']??null;
+        //$this->view->dados= CategoriasClass::getCategorias(5);
+        echo json_encode(CategoriasClass::filtrarCategoria($catFiltro));
+      //  $this->render('painel_adm/categoria_home');  
     }
 }

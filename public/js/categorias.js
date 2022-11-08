@@ -109,14 +109,17 @@ function filtrarCategoria(){
   console.log(catFiltro)
   if(catFiltro != ''){
  //  document.querySelector('tr-categoria').remove()
-   var lista = document.getElementsByClassName("tr-categoria");
+ /*  var lista = document.getElementsByClassName("tr-categoria");
     for(var i = lista.length - 1; i >= 0; i--)
     {
         lista[i].remove()
-    }
-    url = 'http://localhost:8000/adm/categorias?catFiltro='+catFiltro
+    }*/
+    url = 'http://localhost:8000/adm/filtrar_categoria?catFiltro='+catFiltro
   //  console.log(url)
-   axios.get(url)
+   axios.get(url).then(function(response){
+    console.log(response.data);
+   
+   })
 
   }else{
     url = 'http://localhost:8000/adm/categorias'
