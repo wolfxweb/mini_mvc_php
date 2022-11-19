@@ -62,6 +62,11 @@ class Route extends Bootstrap{
             'controller'=> 'CategoriasController',
             'action'=>'filtrarCategoria'   
         );
+        $routes['tabela_categorias'] =array(
+            'route'=> '/adm/tabela_categorias',
+            'controller'=> 'CategoriasController',
+            'action'=>'tabelaCategorias'   
+        );
          /** rotas unidade mendidas */
         $routes['unidade_medida'] =array(
             'route'=> '/adm/unidade_medida',

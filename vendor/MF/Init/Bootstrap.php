@@ -26,7 +26,6 @@ abstract class Bootstrap{
              $action =$route['action'];
              $controller->$action();
            }
-         
          }
       }
     protected function getUrl(){

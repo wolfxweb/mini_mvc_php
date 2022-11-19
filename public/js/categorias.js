@@ -1,9 +1,9 @@
 
 
- 
+
 function sendFormulario(event) {
   event.preventDefault()
- 
+
   let nome = document.getElementById('nome').value
   let descricao = document.getElementById('descricao').value
 
@@ -33,14 +33,17 @@ function sendFormulario(event) {
 }
 
 function editCategoria(id) {
+
+  console.log(id)
   let cat_id = id
   let ctn = 'cat_id' + cat_id
   let categoria = document.getElementById(ctn)
+  console.log(categoria)
   let cat_nome = categoria.getAttribute('catNome')
   let cat_descricao = categoria.getAttribute('catDescricao')
-  document.getElementById('cat_id').value = cat_id
-  document.getElementById('cat_nome').value = cat_nome
-  document.getElementById('cat_descricao').value = cat_descricao
+  document.getElementById('cat_id_edit').value = id
+  document.getElementById('cat_nome_edit').value = cat_nome
+  document.getElementById('cat_descricao_edit').value = cat_descricao
   let canvaCategoria = document.getElementById('offcanvasEditar-categoria')
   canvaCategoria.classList.add("show");
 }
@@ -54,14 +57,14 @@ function closeCanva() {
 
 function saveCategoriaEditada() {
   event.preventDefault()
-  let cat_id = document.getElementById('cat_id').value
-  let cat_nome = document.getElementById('cat_nome').value
-  let cat_descricao = document.getElementById('cat_descricao').value
+  let cat_id = document.getElementById('cat_id_edit').value
+  let cat_nome = document.getElementById('cat_nome_edit').value
+  let cat_descricao = document.getElementById('cat_descricao_edit').value
   if (cat_nome == '') {
     msgErroCampoNome("Este campo e obrigatório!")
     return false;
   }
- 
+
   let url = 'http://localhost:8000/adm/edicao_categoria'
   axios.post(url, {
     cat_id: cat_id,
@@ -86,14 +89,14 @@ function saveCategoriaEditada() {
     document.getElementById("cat_nomeFeedback").innerHTML = msgtext;
   }
 }
-function deletarCategoria(id){
+function deletarCategoria(id) {
   let url = 'http://localhost:8000/adm/delete_categoria'
   axios.post(url, {
     cat_id: id,
   })
     .then(function (response) {
       toastr.success('Categoria excluida com sucesso.')
-     // window.location.reload();
+      // window.location.reload();
       setTimeout(function () {
         window.location.reload();
       }, 2000);
@@ -103,28 +106,24 @@ function deletarCategoria(id){
     })
 }
 
-function filtrarCategoria(){
-  let catFiltro = document.getElementById('catFiltro').value
-  let url =''
-  console.log(catFiltro)
-  if(catFiltro != ''){
- //  document.querySelector('tr-categoria').remove()
- /*  var lista = document.getElementsByClassName("tr-categoria");
-    for(var i = lista.length - 1; i >= 0; i--)
-    {
-        lista[i].remove()
-    }*/
-    url = 'http://localhost:8000/adm/filtrar_categoria?catFiltro='+catFiltro
-  //  console.log(url)
-   axios.get(url).then(function(response){
-    console.log(response.data);
-   
-   })
+$(document).ready(function () {
+  $('#categoria').DataTable({
+  //  dom: "Bfrtip",
+    processing: true,
+    serverSide: true,
+    ajax: {
+      url: 'http://localhost:8000/adm/tabela_categorias',
+      type: "POST"
+    },
+    "columns": [
+      { "data": "cat_id" },
+      { "data": "cat_nome" },
+      { "data": "cat_descricao" },
+      { "data": "cat_acao" },
+    ],
+    "language":{
+      "url":"//cdn.datatables.net/plug-ins/1.13.1/i18n/pt-BR.json"
+    }
 
-  }else{
-    url = 'http://localhost:8000/adm/categorias'
-    axios.get(url)
-  }
-
-
-}
+  });
+});

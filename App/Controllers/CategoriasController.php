@@ -13,21 +13,12 @@ class CategoriasController  extends Action {
     use ValidacoesTrait;
     use CategoriaTrait;
 
+
+
     public function loadTelaCategoria(){
 
-       // $this->render('painel_adm/categoria_home');  
-        $catFiltro = $_REQUEST['catFiltro']??null;
-        if(!empty($catFiltro)){
-           $this->view->dados = CategoriasClass::filtrarCategoria($catFiltro);
-           $this->view->reload =  true;
-         //  echo json_encode(CategoriasClass::filtrarCategoria($catFiltro));
-           $this->render('painel_adm/categoria_home');  
-        }else{
-            $this->view->dados = CategoriasClass::getCategorias();
-            $this->render('painel_adm/categoria_home');  
-        }
-       
-       // $this->render('painel_adm/categoria_home');  
+        $this->view->dados = CategoriasClass::getCategorias();
+        $this->render('painel_adm/categoria_home');  
        
     }
     public function cadastroCategoria(){
@@ -66,4 +57,10 @@ class CategoriasController  extends Action {
         echo json_encode(CategoriasClass::filtrarCategoria($catFiltro));
       //  $this->render('painel_adm/categoria_home');  
     }
+    public function tabelaCategorias(){
+    echo   CategoriasClass::tabelaCategorias();
+       
+
+      
+     }
 }

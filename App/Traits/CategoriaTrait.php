@@ -6,6 +6,7 @@ use App\Classes\CategoriasClass;
 trait CategoriaTrait{
 
 
+
   
     
 }
