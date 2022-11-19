@@ -73,22 +73,28 @@ function saveCategoriaEditada() {
   })
     .then(function (response) {
       if (response.data = "Nome categoria deve ter no minimo 3 caracter." && response.data != "") {
-        msgErroCampoNome(response.data)
+        msgErroCampoNome( "Nome categoria deve ter no minimo 3 caracteres." )
+        toastr.warning("Nome categoria deve ter no minimo 3 caracteres.")
+      }else{
+       // toastr.success('Cadastro atualizado com sucesso.')
+       toastr.success('You clicked Success toast');
+        setTimeout(function () {
+          closeCanva()
+        }, 2000);
+        
       }
-      toastr.success('Cadastro atualizado com sucesso.')
-      setTimeout(function () {
-        closeCanva()
-      }, 2000);
+   
     })
     .catch(function (error) {
       console.log(error)
     })
-  function msgErroCampoNome(msgtext) {
-    let msgErroClass = document.getElementById('cat_nome');
-    msgErroClass.classList.add("is-invalid");
-    document.getElementById("cat_nomeFeedback").innerHTML = msgtext;
-  }
+    function msgErroCampoNome(msgtext) {
+      let msgErroClass = document.getElementById('cat_nome_edit');
+      msgErroClass.classList.add("is-invalid");
+      document.getElementById("cat_nomeFeedback").innerHTML = msgtext;
+    }
 }
+
 function deletarCategoria(id) {
   let url = 'http://localhost:8000/adm/delete_categoria'
   axios.post(url, {
