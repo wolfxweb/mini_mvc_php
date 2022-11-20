@@ -1,7 +1,7 @@
 
 $(document).ready(function () {
+  //** tabela categorias */
   $('#categoria').DataTable({
-  //  dom: "Bfrtip",
     processing: true,
     serverSide: true,
     ajax: {
@@ -95,10 +95,8 @@ function saveCategoriaEditada() {
         toasty('Cadastro alterado com sucesso')
         setTimeout(function () {
           closeCanva()
-        }, 2000);
-        
+        }, 2000);  
       }
-   
     })
     .catch(function (error) {
       console.log(error)
