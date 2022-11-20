@@ -40,24 +40,7 @@ function sendFormulario(event) {
     descricao: descricao
   })
     .then(function (response) {
-      toastr.success('Cadastro realizado com sucesso.')
-      toastr.options = {
-        "closeButton": false,
-        "debug": false,
-        "newestOnTop": false,
-        "progressBar": false,
-        "positionClass": "toast-top-right",
-        "preventDuplicates": false,
-        "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "1000",
-        "timeOut": "5000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
-      }
+      toasty('Cadastro realizado com sucesso.')
       document.getElementById('nome').value = ''
       document.getElementById('descricao').value = ''
       setTimeout(function () {
@@ -70,24 +53,21 @@ function sendFormulario(event) {
 }
 
 function editCategoria(id) {
-
-  console.log(id)
   let cat_id = id
   let ctn = 'cat_id' + cat_id
   let categoria = document.getElementById(ctn)
-  console.log(categoria)
   let cat_nome = categoria.getAttribute('catNome')
   let cat_descricao = categoria.getAttribute('catDescricao')
   document.getElementById('cat_id_edit').value = id
   document.getElementById('cat_nome_edit').value = cat_nome
   document.getElementById('cat_descricao_edit').value = cat_descricao
   let canvaCategoria = document.getElementById('offcanvasEditar-categoria')
-  canvaCategoria.classList.add("show");
+  canvaCategoria.classList.add("show")
 }
 
 function closeCanva() {
   let canvaCategoria = document.getElementById('offcanvasEditar-categoria')
-  canvaCategoria.classList.remove("show");
+  canvaCategoria.classList.remove("show")
   window.location.reload();
 }
 
@@ -98,8 +78,8 @@ function saveCategoriaEditada() {
   let cat_nome = document.getElementById('cat_nome_edit').value
   let cat_descricao = document.getElementById('cat_descricao_edit').value
   if (cat_nome == '') {
-    msgErroCampoNome("Este campo e obrigatório!")
-    return false;
+    toasty("Este campo e obrigatório!","ERROR")
+    return false
   }
 
   let url = 'http://localhost:8000/adm/edicao_categoria'
@@ -110,11 +90,9 @@ function saveCategoriaEditada() {
   })
     .then(function (response) {
       if (response.data = "Nome categoria deve ter no minimo 3 caracter." && response.data != "") {
-        msgErroCampoNome( "Nome categoria deve ter no minimo 3 caracteres." )
-        toastr.warning("Nome categoria deve ter no minimo 3 caracteres.")
+        toasty("Nome categoria deve ter no minimo 3 caracteres.","ERROR")
       }else{
-       // toastr.success('Cadastro atualizado com sucesso.')
-       toastr.success('You clicked Success toast');
+        toasty('Cadastro alterado com sucesso')
         setTimeout(function () {
           closeCanva()
         }, 2000);
@@ -126,9 +104,9 @@ function saveCategoriaEditada() {
       console.log(error)
     })
     function msgErroCampoNome(msgtext) {
-      let msgErroClass = document.getElementById('cat_nome_edit');
+      let msgErroClass = document.getElementById('cat_nome_edit')
       msgErroClass.classList.add("is-invalid");
-      document.getElementById("cat_nomeFeedback").innerHTML = msgtext;
+      document.getElementById("cat_nomeFeedback").innerHTML = msgtext
     }
 }
 
@@ -138,8 +116,7 @@ function deletarCategoria(id) {
     cat_id: id,
   })
     .then(function (response) {
-      toastr.success('Categoria excluida com sucesso.')
-      // window.location.reload();
+      toasty('Cadastrp excluído com sucesso')
       setTimeout(function () {
         window.location.reload();
       }, 2000);
@@ -147,5 +124,21 @@ function deletarCategoria(id) {
     .catch(function (error) {
       console.log(error)
     })
+}
+
+function toasty(msg = "Sucesso" , colorClass ){
+  let toastEl = document.getElementById('alertToast')
+  let toastmsg = document.getElementById('txt-toast-alert')
+  toastmsg.innerText = msg
+  if(colorClass){
+    toastEl.classList.remove("bg-success")
+    toastEl.classList.add("bg-danger")
+  }else{
+    toastEl.classList.remove("bg-danger")
+    toastEl.classList.add("bg-success")
+  }
+  let option={animation:false,autohide: false,delay:2000  }
+  let toastElement = new bootstrap.Toast(toastEl, option)
+  toastElement.show()
 }
 
