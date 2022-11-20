@@ -1,5 +1,25 @@
 
+$(document).ready(function () {
+  $('#categoria').DataTable({
+  //  dom: "Bfrtip",
+    processing: true,
+    serverSide: true,
+    ajax: {
+      url: 'http://localhost:8000/adm/tabela_categorias',
+      type: "POST"
+    },
+    "columns": [
+      { "data": "cat_id" },
+      { "data": "cat_nome" },
+      { "data": "cat_descricao" },
+      { "data": "cat_acao" },
+    ],
+    "language":{
+      "url":"//cdn.datatables.net/plug-ins/1.13.1/i18n/pt-BR.json"
+    }
 
+  });
+});
 
 function sendFormulario(event) {
   event.preventDefault()
@@ -21,6 +41,23 @@ function sendFormulario(event) {
   })
     .then(function (response) {
       toastr.success('Cadastro realizado com sucesso.')
+      toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+      }
       document.getElementById('nome').value = ''
       document.getElementById('descricao').value = ''
       setTimeout(function () {
@@ -112,24 +149,3 @@ function deletarCategoria(id) {
     })
 }
 
-$(document).ready(function () {
-  $('#categoria').DataTable({
-  //  dom: "Bfrtip",
-    processing: true,
-    serverSide: true,
-    ajax: {
-      url: 'http://localhost:8000/adm/tabela_categorias',
-      type: "POST"
-    },
-    "columns": [
-      { "data": "cat_id" },
-      { "data": "cat_nome" },
-      { "data": "cat_descricao" },
-      { "data": "cat_acao" },
-    ],
-    "language":{
-      "url":"//cdn.datatables.net/plug-ins/1.13.1/i18n/pt-BR.json"
-    }
-
-  });
-});
