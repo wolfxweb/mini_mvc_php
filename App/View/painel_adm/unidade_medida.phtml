@@ -1,7 +1,28 @@
+<?php include("menu_adm.phtml"); ?>
 
+<div class="container" tabindex="-1">
 
-<?php include("menu_adm.phtml");?>
+<script src="../js/unidade_medida.js"></script>
 
-<div class="container">
-<h3>unidade medida</h3>
+    <div class="bg-light shadow p-3 mb-4 mt-4 bg-body rounded">
+       
+        <nav class="navbar  bg-light  p-1 mb-3 bg-body rounded">
+            <h4>Gerenciamento unidade de medidas</h4>
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasRight-categoria" aria-controls="offcanvasRight-categoria">Adicionar</button>
+        </nav>
+
+        <!-- inicio data table-->
+        <table class="table table-hover table-responsive" id="unidadeMedida" style="width:100%">
+            <thead>
+                <tr>
+                    <th scope="col" id="unid_id">Id</th>
+                    <th scope="col" id="unid_nome">Nome</th>
+                    <th scope="col" id="acao">Ações</th>
+                </tr>
+            </thead>
+        </table>
+        <!-- fim data table-->
+    </div>
+   
 </div>

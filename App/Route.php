@@ -73,6 +73,11 @@ class Route extends Bootstrap{
             'controller'=> 'UnidadeMedidaController',
             'action'=>'loadTelaUnidadeMedida'   
         );
+        $routes['tabela_unidade'] =array(
+            'route'=> '/adm/tabela_unidade',
+            'controller'=> 'UnidadeMedidaController',
+            'action'=>'tabelaUnidadeMedida'   
+        );
            /** rotas fabricantes */
         $routes['fabricante'] =array(
             'route'=> '/adm/fabricante',

@@ -29,8 +29,7 @@ class CategoriasClass extends Modelo{
     }
 
   public static function filtrarCategoria($string){
-    
-
+  
     $stmSQL  = "select cat.cat_id, cat.cat_nome, cat.cat_descricao from categorias cat  ";
     $stmSQL .= " where cat.cat_nome like '%$string%' ";
     return self::selectSql($stmSQL);
