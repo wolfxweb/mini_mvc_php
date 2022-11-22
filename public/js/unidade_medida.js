@@ -18,3 +18,46 @@ $(document).ready(function () {
     }
   });
 });
+
+
+function deletarUnidadeMedida(id){
+
+  console.log(id)
+
+let url = 'http://localhost:8000/adm/delete_unidade'
+  axios.post(url, {
+    unid_id: id,
+  })
+    .then(function (response) {
+    //  toasty('Cadastro excluído com sucesso')
+      setTimeout(function () {
+        window.location.reload();
+      }, 2000);
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+}
+
+function editUnidadeMedida(id){
+  console.log(id);
+  
+  let unid_id = id
+  let ctn = 'cat_id' + unid_id
+  let unidadeMedida = document.getElementById(ctn)
+  let unid_nome = unidadeMedida.getAttribute('catNome')
+   document.getElementById('titulo-unidade-medida').innerHTML ="Edição unidade medida"
+
+  document.getElementById('unid_id').value = id
+  document.getElementById('unid_nome').value = unid_nome
+  let canva = document.getElementById('offcanvasRight-unidade-medida')
+  canva.classList.add("show")
+  
+}
+
+ function closeCanvaUnidadeMedida(){
+  console.log('4458')
+  let canvaCategoria = document.getElementById('offcanvasRight-unidade-medida')
+  canvaCategoria.classList.remove("show")
+  window.location.reload();
+}

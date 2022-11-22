@@ -2,16 +2,16 @@
 
 <div class="container" tabindex="-1">
 
-<script src="../js/unidade_medida.js"></script>
+    <script src="../js/unidade_medida.js"></script>
 
     <div class="bg-light shadow p-3 mb-4 mt-4 bg-body rounded">
-       
+
         <nav class="navbar  bg-light  p-1 mb-3 bg-body rounded">
             <h4>Gerenciamento unidade de medidas</h4>
             <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasRight-categoria" aria-controls="offcanvasRight-categoria">Adicionar</button>
+                data-bs-target="#offcanvasRight-unidade-medida"
+                aria-controls="offcanvasRight-unidade-medida">Adicionar</button>
         </nav>
-
         <!-- inicio data table-->
         <table class="table table-hover table-responsive" id="unidadeMedida" style="width:100%">
             <thead>
@@ -24,5 +24,35 @@
         </table>
         <!-- fim data table-->
     </div>
-   
+
+</div>
+
+<div class="offcanvas offcanvas-end shadow  bg-body rounded border border-0 " data-bs-backdrop="false" tabindex="-1"
+    id="offcanvasRight-unidade-medida" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+        <button onclick="closeCanvaUnidadeMedida()" type="button" class="btn-close" data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body pt-4">
+        <form class="pt-2" onsubmit="sendFormulario(event)">
+            <h5 id='titulo-unidade-medida'>Cadastro unidade medida</h5>
+            <div class="col-12 p-1">
+                <label for="unid_id" class="form-label">ID </label>
+                <input type="text" class="form-control " id="cat_id_edit" aria-describedby="cat_id" name="cat_id"
+                    value="" disabled>
+                <div id="nomeFeedback" class="invalid-feedback"></div>
+                <!--   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+            </div>
+            <div class="col-12 p-1">
+                <label for="unid_nome" class="form-label">Nome</label>
+                <input type="text" class="form-control " id="unid_nome" aria-describedby="unid_nome" name="unid_nome"
+                    value="">
+                <div id="nomeFeedback" class="invalid-feedback"></div>
+                <!--   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+            </div>
+            <div class="col-12 p-1">
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </div>
+        </form>
+    </div>
 </div>

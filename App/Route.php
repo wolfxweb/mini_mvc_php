@@ -67,6 +67,7 @@ class Route extends Bootstrap{
             'controller'=> 'CategoriasController',
             'action'=>'tabelaCategorias'   
         );
+        
          /** rotas unidade mendidas */
         $routes['unidade_medida'] =array(
             'route'=> '/adm/unidade_medida',
@@ -77,6 +78,11 @@ class Route extends Bootstrap{
             'route'=> '/adm/tabela_unidade',
             'controller'=> 'UnidadeMedidaController',
             'action'=>'tabelaUnidadeMedida'   
+        );
+        $routes['delete_unidade'] =array(
+            'route'=> '/adm/delete_unidade',
+            'controller'=> 'UnidadeMedidaController',
+            'action'=>'deleteUnidadeMedida'   
         );
            /** rotas fabricantes */
         $routes['fabricante'] =array(

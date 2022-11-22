@@ -15,9 +15,7 @@ function Rota(rota){
         'adm/fabricante',
         'adm/produto',
         'adm/cadastro_categoria'
-
-
-    ]
+     ]
     const baseUrl = 'http://localhost:8000/'
     let url = baseUrl + rota;
     let url404 = baseUrl+'404'
