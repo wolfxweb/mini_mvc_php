@@ -1,8 +1,9 @@
 
 $(document).ready(function () {
   //** tabela categorias */
-  $('#categoria').DataTable({
-    processing: true,
+  var table = $('#categoria').DataTable({
+    orderCellsTop: true,
+  //  processing: true,
     serverSide: true,
     ajax: {
       url: 'http://localhost:8000/adm/tabela_categorias',
@@ -16,8 +17,8 @@ $(document).ready(function () {
     ],
     "language":{
       "url":"//cdn.datatables.net/plug-ins/1.13.1/i18n/pt-BR.json"
-    }
-
+    },
+  
   });
 });
 

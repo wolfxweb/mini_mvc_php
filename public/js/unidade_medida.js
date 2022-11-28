@@ -57,7 +57,7 @@ function editUnidadeMedida(id){
 
  function closeCanvaUnidadeMedida(){
   console.log('4458')
-  let canvaCategoria = document.getElementById('offcanvasRight-unidade-medida')
-  canvaCategoria.classList.remove("show")
+  let canvaUnidadeMedida = document.getElementById('offcanvasRight-unidade-medida')
+  canvaUnidadeMedida.classList.remove("show")
   window.location.reload();
 }
