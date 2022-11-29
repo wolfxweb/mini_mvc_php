@@ -84,6 +84,11 @@ class Route extends Bootstrap{
             'controller'=> 'UnidadeMedidaController',
             'action'=>'deleteUnidadeMedida'   
         );
+        $routes['adicionar-atualizar'] =array(
+            'route'=> '/adm/adicionar-atualizar',
+            'controller'=> 'UnidadeMedidaController',
+            'action'=>'adicionarAtualizarUnidadeMedida'   
+        );
            /** rotas fabricantes */
         $routes['fabricante'] =array(
             'route'=> '/adm/fabricante',

@@ -6,8 +6,10 @@
             <a class="navbar-brand" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
                 aria-controls="offcanvasScrolling"><i class="bi-list" style="font-size: 1.5rem;"></i></a>
             <a class="navbar-brand" href="#" onclick="Rota('adm')">Sistema lista compras</a>
-            <a class="navbar-brand"><i class="bi-person" style="font-size: 1.5rem;"></i></a>
+            <a class="navbar-brand"><i class="bi-person" style="font-size: 1.5rem;"></i></a>  
+            <?php include("templates/toastAlertPrincipal.phtml"); ?>
         </div>
+       
     </nav>
     <div class="offcanvas offcanvas-start shadow  bg-body rounded border border-0" data-bs-scroll="true"
         data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
@@ -26,7 +28,7 @@
                     <ul class="list-group mt-2 mb-2 " id="ulProdutos">
                         <li class="list-group-item" onclick="Rota('adm/categorias')">Categoria</li>
                         <li class="list-group-item" onclick="Rota('adm/unidade_medida')">Unidade Medida</li>
-                        <li class="list-group-item" onclick="Rota('adm/fabricante')">Fabricante</li>
+                   <!--     <li class="list-group-item" onclick="Rota('adm/fabricante')">Fabricante</li>-->
                         <li class="list-group-item" onclick="Rota('adm/produto')">Produto</li>
 
                     </ul>

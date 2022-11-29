@@ -3,7 +3,7 @@ $(document).ready(function () {
   //** tabela categorias */
   var table = $('#categoria').DataTable({
     orderCellsTop: true,
-  //  processing: true,
+    processing: true,
     serverSide: true,
     ajax: {
       url: 'http://localhost:8000/adm/tabela_categorias',
@@ -115,16 +115,13 @@ function deletarCategoria(id) {
     cat_id: id,
   })
     .then(function (response) {
-      toasty('Cadastrp excluído com sucesso')
-      setTimeout(function () {
-        window.location.reload();
-      }, 2000);
+      toastPrincipal('Cadastro excluído com sucesso')
     })
     .catch(function (error) {
       console.log(error)
     })
 }
-
+/*
 function toasty(msg = "Sucesso" , colorClass ){
   let toastEl = document.getElementById('alertToast')
   let toastmsg = document.getElementById('txt-toast-alert')
@@ -140,4 +137,4 @@ function toasty(msg = "Sucesso" , colorClass ){
   let toastElement = new bootstrap.Toast(toastEl, option)
   toastElement.show()
 }
-
+*/

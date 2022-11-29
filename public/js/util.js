@@ -77,3 +77,40 @@ var offcanvasList = offcanvasElementList.map(function (offcanvasEl) {
 
 
   }
+  function toasty(msg = "Sucesso" , colorClass ){
+    let toastEl = document.getElementById('alertToast')
+    let toastmsg = document.getElementById('txt-toast-alert')
+    toastmsg.innerText = msg
+    if(colorClass){
+      toastEl.classList.remove("bg-success")
+      toastEl.classList.add("bg-danger")
+    }else{
+      toastEl.classList.remove("bg-danger")
+      toastEl.classList.add("bg-success")
+    }
+    let option={animation:false,autohide: false,delay:2000  }
+    let toastElement = new bootstrap.Toast(toastEl, option)
+    toastElement.show()
+    setTimeout(function () {
+      window.location.reload();
+    }, 2000);
+  }
+
+  function toastPrincipal(msg = "Sucesso" , colorClass ){
+    let toastEl = document.getElementById('alertToastPrinical')
+    let toastmsg = document.getElementById('txt-toast-alert-principal')
+    toastmsg.innerText = msg
+    if(colorClass){
+      toastEl.classList.remove("bg-success")
+      toastEl.classList.add("bg-danger")
+    }else{
+      toastEl.classList.remove("bg-danger")
+      toastEl.classList.add("bg-success")
+    }
+    let option={animation:false,autohide: false,delay:2000  }
+    let toastElement = new bootstrap.Toast(toastEl, option)
+    toastElement.show()
+    setTimeout(function () {
+      window.location.reload();
+    }, 2000);
+  }

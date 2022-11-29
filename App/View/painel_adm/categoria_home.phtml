@@ -1,17 +1,12 @@
 <?php include("menu_adm.phtml"); ?>
 
 <div class="container" tabindex="-1">
-
-    
-
     <div class="bg-light shadow p-3 mb-4 mt-4 bg-body rounded">
-        <?php include("templates/toastAlert.phtml"); ?>
         <nav class="navbar  bg-light  p-1 mb-3 bg-body rounded">
             <h4>Gerenciamento das Categorias</h4>
             <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasRight-categoria" aria-controls="offcanvasRight-categoria">Adicionar</button>
         </nav>
-        
         <!-- inicio data table-->
         <table class="table table-hover table-responsive" id="categoria" style="width:100%">
             <thead>
@@ -25,14 +20,12 @@
         </table>
         <!-- fim data table-->
     </div>
-
     <div class="offcanvas offcanvas-end shadow  bg-body rounded border border-0 " data-bs-backdrop="false" tabindex="-1"
         id="offcanvasRight-categoria" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
-
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-
+        <?php include("templates/toastAlert.phtml"); ?>
         <div class="offcanvas-body pt-4">
             <form class="pt-2" onsubmit="sendFormulario(event)">
                 <h5>Cadastro categoria</h5>
@@ -56,14 +49,14 @@
             </form>
         </div>
     </div>
-  
+
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEditar-categoria" data-bs-backdrop="false"
         aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header pt-4">
             <button type="button" class="btn-close" onclick="closeCanva()" aria-label="Close"></button>
         </div>
+        <?php include("templates/toastAlert.phtml"); ?>
         <div class="offcanvas-body">
-
             <form class="pt-2" onsubmit="saveCategoriaEditada()">
                 <h5>Edição categoria</h5>
                 <div class="col-12 p-1">
@@ -90,10 +83,7 @@
                 <div class="col-12 p-1">
                     <button type="submit" class="btn btn-primary">Salvar</button>
                 </div>
-
             </form>
-
-
         </div>
     </div>
 </div>

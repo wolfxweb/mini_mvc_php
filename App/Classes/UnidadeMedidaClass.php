@@ -7,7 +7,21 @@ use MF\Model\Model as Modelo;
 
 class UnidadeMedidaClass extends Modelo{
 
-
+  public static function adicionarAtualizarUnidadeMedida($data){
+    if(!empty($data['unid_id'])){
+      self::atualizarUnidadeMedidada($data);
+    }else{
+      self::salvarUnidadeMedidada($data);
+    }
+  }
+  private static function salvarUnidadeMedidada($data){
+    $stmSQL  = " insert into unidade_medida set unid_nome = '{$data['unid_nome']}' ";
+    return   self::execSql($stmSQL);
+  }
+  private static function atualizarUnidadeMedidada($data){
+    $stmSQL  = " update unidade_medida set unid_nome = '{$data['unid_nome']}' where unid_id = {$data['unid_id']}";
+    return   self::execSql($stmSQL);
+  }
   public static function getUnidadeMedida($id = null ,$statusSigla = [] ,$dataTableOrder=null ,$searchTable =null ){
 
     $stmSQL  = " select unid_id, unid_slug , unid_nome ,usu_id from unidade_medida   ";
@@ -74,7 +88,7 @@ class UnidadeMedidaClass extends Modelo{
         $registro['unid_acao'].= '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>';
         $registro['unid_acao'].= '<button type="button" class="btn btn-danger"  onclick="deletarUnidadeMedida('.$data["unid_id"]. ')">Excluir</button>';
         $registro['unid_acao'].= '</div></div></div></div>';
-        $registro['unid_acao'].= ' <INPUT TYPE="hidden" id="cat_id'.$data["unid_id"].'" NAME="catEdit" VALUE="'.$data["unid_id"].'" catNome="'.$data['unid_nome'].'" catDescricao="'.$data['unid_nome'].'">';
+        $registro['unid_acao'].= ' <INPUT TYPE="hidden" id="unid_codigo'.$data["unid_id"].'" NAME="unidEdit" VALUE="'.$data["unid_id"].'" unid_nome="'.$data['unid_nome'].'" >';
         $dados[]= $registro;
       }
      if(empty($dados)){

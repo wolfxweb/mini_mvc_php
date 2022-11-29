@@ -13,11 +13,6 @@
     <!-- Bootstrap CSS -->
     <link href="/includes/bootstrap5/css/bootstrap.min.css" rel="stylesheet"/>
   
- 
-  	
-
-
-
     <link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet" media="all">
     <link  href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" rel="stylesheet" media="all">
     <!--
@@ -32,14 +27,15 @@
     
 -->
     
-    
+ 
     <title>App lista</title>
   </head>
   <body>
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   
     <?= $this->content()?>
-
+  
+    <input type="hidden" id="HTTP_HOST" name="custId" value='<?= "http://".$_SERVER["HTTP_HOST"]?>'>
     <!-- Optional JavaScript; choose one of the two! -->
     <script src="/js/util.js"></script>
    

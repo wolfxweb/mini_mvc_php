@@ -24,4 +24,10 @@ class UnidadeMedidaController extends Action{
             echo json_encode('Categoria não encontrada.');
         } 
     }
+
+    public function adicionarAtualizarUnidadeMedida(){
+        $data  = json_decode(file_get_contents('php://input'), true);
+        UnidadeMedidaClass::adicionarAtualizarUnidadeMedida($data);
+    }
+
 }
