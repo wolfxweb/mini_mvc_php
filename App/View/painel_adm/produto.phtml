@@ -1,7 +1,7 @@
 <?php include("menu_adm.phtml"); ?>
 
 <div class="container" tabindex="-1">
-    <script src="../js/unidade_medida.js"></script>
+    <script src="../js/produto.js"></script>
     <div class="bg-light shadow p-3 mb-4 mt-4 bg-body rounded">
         <nav class="navbar  bg-light  p-1 mb-3 bg-body rounded">
             <h4>Gerenciamento produtos</h4>
@@ -10,11 +10,15 @@
                 aria-controls="offcanvasRight-unidade-medida">Adicionar</button>
         </nav>
         <!-- inicio data table-->
-        <table class="table table-hover table-responsive" id="unidadeMedida" style="width:100%">
+        <table class="table table-hover table-responsive" id="tabelaProduto" style="width:100%">
             <thead>
                 <tr>
-                    <th scope="col" id="unid_id">Id</th>
-                    <th scope="col" id="unid_nome">Nome</th>
+                    <th scope="col" id="pro_id">Id</th>
+                    <th scope="col" id="prod_nome">Nome</th>
+                    <th scope="col" id="cat_id">Categoria</th>
+                    <th scope="col" id="unid_id">Unidade medida</th>
+                    <th scope="col" id="prod_preco">Preço</th>
+  
                     <th scope="col" id="acao">Ações</th>
                 </tr>
             </thead>

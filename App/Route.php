@@ -8,8 +8,10 @@ class Route extends Bootstrap{
     protected function iniRoutes(){
         $routes['home'] =array(
             'route'=> '/',
-            'controller'=> 'IndexController',
-            'action'=>'index'   
+         //   'controller'=> 'IndexController',
+         //  'action'=>'index'  
+             'controller'=> 'PainelAdmController',
+             'action'=>'loadTelaAdm'    
         );
         $routes['sobre_nos'] =array(
             'route'=> '/sobre_nos',
@@ -100,6 +102,11 @@ class Route extends Bootstrap{
             'route'=> '/adm/produto',
             'controller'=> 'ProdutoController',
             'action'=>'loadTelaProduto'   
+        );
+        $routes['tabela_produto'] =array(
+            'route'=> '/adm/tabela-produto',
+            'controller'=> 'ProdutoController',
+            'action'=>'tabelaProdutos'   
         );
        $this->setRoutes($routes);
     }
