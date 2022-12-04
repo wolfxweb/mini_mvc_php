@@ -34,10 +34,16 @@ function editProduto(id) {
        
         response.data.categorias.forEach(function (categoria) {
           let selecionado = false;
+          if(response.data.produto != undefined  && parseInt(categoria.cat_id) === parseInt(response.data.produto[0].cat_id)){
+            selecionado = true;
+          }
           addOption(categoria.cat_id, categoria.cat_nome,selecionado,'categoria-select' ) 
         });
         response.data.unidadesMedidas.forEach(function (unidadeMedida) {
           let selecionado = false;
+          if(response.data.produto != undefined  && parseInt(unidadeMedida.unid_id) === parseInt(response.data.produto[0].unid_id)){
+            selecionado = true;
+          }
           addOption(unidadeMedida.unid_id, unidadeMedida.unid_nome, selecionado,'unidade-medida-select')
         });
         
