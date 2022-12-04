@@ -108,6 +108,11 @@ class Route extends Bootstrap{
             'controller'=> 'ProdutoController',
             'action'=>'tabelaProdutos'   
         );
+        $routes['deletar_produto'] =array(
+            'route'=> '/adm/deletar-produto',
+            'controller'=> 'ProdutoController',
+            'action'=>'deletarProduto'   
+        );
        $this->setRoutes($routes);
     }
 }

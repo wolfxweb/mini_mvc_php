@@ -22,4 +22,26 @@ $(document).ready(function () {
       }
     });
   });
-  
+
+  function editProduto(id){
+
+    alert(id)
+  }
+  function deletarProduto(id){
+    console.log(id)
+    let url = 'http://localhost:8000/adm/deletar-produto'
+    axios.post(url, {
+      pro_id: id,
+    })
+      .then(function (response) {
+        if(response.data == "Item não encontrado."){
+          toastPrincipal('Item não encontrado.', 'bg-danger')
+        }else{
+          toastPrincipal('Cadastro excluído com sucesso')
+        }
+      
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+  }

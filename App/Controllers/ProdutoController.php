@@ -15,6 +15,11 @@ class ProdutoController extends Action{
         echo  ProdutoClass::tabelaProdutos();
     }
 
+    public function deletarProduto(){
+        
+        $data  = json_decode(file_get_contents('php://input'), true);
+        ProdutoClass::deletarProduto($data['pro_id']);
+    } 
 
 
 
