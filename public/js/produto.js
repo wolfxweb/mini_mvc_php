@@ -44,7 +44,11 @@ function editProduto(id) {
         console.log(response.data.produto[0])
         if(response.data.produto != undefined){
           console.log(response.data.produto[0])
-          document.getElementById("pro_id").value = response.data.produto[0].pro_id
+          document.getElementById("proId").value = response.data.produto[0].pro_id
+          document.getElementById("prodNome").value = response.data.produto[0].prod_nome
+          document.getElementById("prodDescricao").value = response.data.produto[0].prod_descricao
+          document.getElementById("prodPreco").value = response.data.produto[0].prod_preco
+          
         }
 
 
