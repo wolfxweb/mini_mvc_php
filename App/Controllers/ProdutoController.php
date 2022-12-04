@@ -20,6 +20,9 @@ class ProdutoController extends Action{
         $data  = json_decode(file_get_contents('php://input'), true);
         ProdutoClass::deletarProduto($data['pro_id']);
     } 
+    public function categoriasUnidadesMedidasProduto(){
+        ProdutoClass::getCategoriasUnidadesMedidasProduto();
+    }
 
 
 

@@ -8,11 +8,23 @@ use App\Classes\Components\AcaoTabelaComponent;
 class ProdutoClass  extends Modelo {
 
 
+    public static function getCategoriasUnidadesMedidasProduto(){
+      $data  = json_decode(file_get_contents('php://input'), true);
+     
+        if($data['pro_id'] != "cadastro"){
+          $id = $data['pro_id'];
+          $response['produto'] = self::selectSql(" SELECT * FROM produto WHERE pro_id = $id ");
+        }else{
+          $response['produto']=[];
+        }
+        $response['categorias'] = self::selectSql('SELECT * FROM categorias');
+        $response['unidadesMedidas'] = self::selectSql('SELECT * FROM unidade_medida');
+        echo  json_encode($response);
+       }
     public static function deletarProduto($id){
        $tabela = "produto";
        $where  = "pro_id = {$id} ";
        self::delete($tabela , $where);
-
     } 
 
     protected static function getTabelaProduto(){
@@ -47,25 +59,6 @@ class ProdutoClass  extends Modelo {
                 $registro['unid_id']=$data['unid_id'];
                 $registro['prod_preco']=$data['prod_preco'];
                 $registro['acao'] = AcaoTabelaComponent::acaoTabela('prod',$data['pro_id'],$data['prod_nome'],'Produto');
-              // $registro['acao'] = 'acao';
-                /*
-                $registro['acao'] = '<div class="btn-group btn-group-sm" role="group" aria-label="Basic mixed styles example">';
-                $registro['acao'].= '<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalprod'.$data["pro_id"].'"><i class="bi bi-trash"></i></button>';  
-                $registro['acao'].= '<button type="button" class="btn btn-success"  onclick="editProduto('.$data["pro_id"].')"><i class="bi bi-pencil"></i></button>';                
-                $registro['acao'].= '</div>';
-                $registro['acao'].= '<div class="modal fade" id="modalprod'.$data["pro_id"].'" data-bs-backdrop="static"  data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"  aria-hidden="true">';
-                $registro['acao'].= '<div class="modal-dialog modal-dialog-centered">';
-                $registro['acao'].= '<div class="modal-content">';
-                $registro['acao'].= '<div class="modal-header"> <h5 class="modal-title" id="staticBackdropLabel">Excluir</h5>  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>';
-                $registro['acao'].= '<div class="modal-body"><h6>Deseja mesmo excluir a unidade de medida '.$data['prod_nome'].'?</h6><p>Esta ação e ireversivel.</p></div>';
-                $registro['acao'].= '<div class="modal-footer">';
-                $registro['acao'].= '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>';
-                $registro['acao'].= '<button type="button" class="btn btn-danger"  onclick="deletarUnidadeMedida('.$data["pro_id"]. ')">Excluir</button>';
-                $registro['acao'].= '</div></div></div></div>';
-                */
-               // $registro['acao'].= ' <INPUT TYPE="hidden" id="prod_codigo'.$data["pro_id"].'" NAME="prodEdit" VALUE="'.$data["pro_id"].'" prod_nome="'.$data['prod_nome'].'" >';
-                
-
                 $dados[]= $registro;
             }
             if(empty($dados)){

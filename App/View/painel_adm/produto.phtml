@@ -5,9 +5,9 @@
     <div class="bg-light shadow p-3 mb-4 mt-4 bg-body rounded">
         <nav class="navbar  bg-light  p-1 mb-3 bg-body rounded">
             <h4>Gerenciamento produtos</h4>
-            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasRight-unidade-medida"
-                aria-controls="offcanvasRight-unidade-medida">Adicionar</button>
+            <button   onclick="editProduto('cadastro')" class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasRight-produto"
+                aria-controls="offcanvasRight-produto">Adicionar</button>
         </nav>
         <!-- inicio data table-->
         <table class="table table-hover table-responsive" id="tabelaProduto" style="width:100%">
@@ -18,7 +18,6 @@
                     <th scope="col" id="cat_id">Categoria</th>
                     <th scope="col" id="unid_id">Unidade medida</th>
                     <th scope="col" id="prod_preco">Preço</th>
-  
                     <th scope="col" id="acao">Ações</th>
                 </tr>
             </thead>
@@ -27,27 +26,57 @@
     </div>
 </div>
 <div class="offcanvas offcanvas-end shadow  bg-body rounded border border-0 " data-bs-backdrop="false" tabindex="-1"
-    id="offcanvasRight-unidade-medida" aria-labelledby="offcanvasRightLabel">
+    id="offcanvasRight-produto" aria-labelledby="offcanvasRightLabel">
     <?php include("templates/ToastAlert.phtml"); ?>
     <div class="offcanvas-header">
-        <button onclick="closeCanvaUnidadeMedida()" type="button" class="btn-close" data-bs-dismiss="offcanvas"
+        <button onclick="closeCanvaProduto()" type="button" class="btn-close" data-bs-dismiss="offcanvas"
             aria-label="Close"></button>
     </div>
     <div class="offcanvas-body pt-4">
-        <form class="pt-2" onsubmit="sendFormularioUnidadeMedida(event)" id="form-unidade-medida">
-            <h5 id='titulo-unidade-medida'>Cadastro unidade medida</h5>
+        <form class="pt-2" onsubmit="sendFormularioProduto(event)" id="form-unidade-medida">
+            <h5 id='titulo-produto'>Cadastro produto</h5>
             <div class="col-12 p-1">
-                <label for="unid_id" class="form-label">ID </label>
-                <input type="text" class="form-control " id="unidId" aria-describedby="unid_id" name="unid_id" value="" disabled>
-                <div id="nomeFeedback" class="invalid-feedback"></div>
+                <label for="pro_id" class="form-label">ID </label>
+                <input type="text" class="form-control " id="unidId" aria-describedby="pro_id" name="pro_id" value="" disabled>
+                <div id="pro_idFeedback" class="invalid-feedback"></div>
                 <!--   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
             </div>
             <div class="col-12 p-1">
-                <label for="unid_nomex" class="form-label">Nome</label>
-                <input type="text" class="form-control " id="unidNome" aria-describedby="unid_nomex" name="unid_nome"  value="">
-                <div id="nomeFeedback" class="invalid-feedback"></div>
+                <label for="prod_nome" class="form-label">Nome</label>
+                <input type="text" class="form-control " id="prod_nome" aria-describedby="prod_nome" name="prod_nome"  value="">
+                <div id="prod_nomeFeedback" class="invalid-feedback"></div>
                 <!--   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
             </div>
+            <div class="col-12 p-1">
+                <label for="prod_descricao" class="form-label">Descrição</label>
+                <input type="text" class="form-control " id="prod_descricao" aria-describedby="prod_descricao" name="prod_descricao"  value="">
+                <div id="prod_descricaoFeedback" class="invalid-feedback"></div>
+                <!--   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+            </div>
+            <div class="col-12 p-1">
+                <label for="cat_id" class="form-label">Categoria</label>
+                <select id="categoria-select" class="form-select" aria-label="Default select example" name="cat_id">
+                   
+                </select>
+                <div id="cat_idFeedback" class="invalid-feedback"></div>
+                <!--   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+            </div>
+            <div class="col-12 p-1">
+                <label for="unid_id" class="form-label">Unidade medida</label>
+                <select  id="unidade-medida-select" class="form-select" aria-label="Default select example" name="unid_id">
+                    
+                </select>
+                <div id="unidadeMedidaFeedback" class="invalid-feedback"></div>
+                <!--   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+            </div>
+            <div class="col-12 p-1">
+                <label for="prod_preco" class="form-label">Preço</label>
+                <input type="text" class="form-control " id="unidNome" aria-describedby="prod_preco" name="prod_preco"  value="">
+                <div id="precoFeedback" class="invalid-feedback"></div>
+                <!--   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+            </div>
+            
+            
             <div class="col-12 p-1">
                 <button type="submit" class="btn btn-primary">Salvar</button>
             </div>
