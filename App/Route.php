@@ -123,6 +123,12 @@ class Route extends Bootstrap{
             'controller'=> 'ProdutoController',
             'action'=>'acaoProduto'   
         );
+        //**pedido */
+        $routes['pedido'] =array(
+            'route'=> '/adm/pedido',
+            'controller'=> 'PedidoController',
+            'action'=>'getTelaPedido'   
+        );
        $this->setRoutes($routes);
     }
 }

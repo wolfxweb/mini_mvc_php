@@ -14,7 +14,8 @@ function Rota(rota){
         'adm/unidade_medida',
         'adm/fabricante',
         'adm/produto',
-        'adm/cadastro_categoria'
+        'adm/cadastro_categoria',
+        'adm/pedido'
      ]
     const baseUrl = 'http://localhost:8000/'
     let url = baseUrl + rota;
