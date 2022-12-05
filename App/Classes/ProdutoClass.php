@@ -7,6 +7,32 @@ use App\Classes\Components\AcaoTabelaComponent;
 
 class ProdutoClass  extends Modelo {
 
+   public  static function acaoProduto(){
+      
+    $data  = json_decode(file_get_contents('php://input'), true);
+    $pro_id =$data['pro_id'];
+    $prod_nome = $data['prod_nome'];
+    $prod_descricao = $data['prod_descricao'];
+    $prod_preco =$data['prod_preco'];
+    $unid_id = $data['unid_id'];
+    $cat_id =$data['cat_id'];
+    if(!empty($data['pro_id'])){
+      try {
+        $query = "UPDATE produto SET prod_nome= '{$prod_nome}' ,prod_descricao= '{$prod_descricao}' , prod_preco = $prod_preco, unid_id = $unid_id , cat_id = $cat_id WHERE pro_id = $pro_id ";
+        self::execSql($query); 
+      } catch (\PDOException $e) {
+          echo  $e->getMessage();
+      }
+    }else{
+      try {
+        $query = "INSERT INTO produto(prod_nome,prod_descricao,prod_preco,unid_id,cat_id) VALUES ('$prod_nome' ,'$prod_descricao',$prod_preco,$unid_id,$cat_id)";
+        self::execSql($query); 
+      } catch (\PDOException $e) {
+          echo  $e->getMessage();
+      }
+    }
+
+   }
 
     public static function getCategoriasUnidadesMedidasProduto(){
       $data  = json_decode(file_get_contents('php://input'), true);
@@ -14,8 +40,6 @@ class ProdutoClass  extends Modelo {
         if($data['pro_id'] != "cadastro"){
           $id = $data['pro_id'];
           $response['produto'] = self::selectSql(" SELECT * FROM produto WHERE pro_id = $id ");
-        }else{
-          $response['produto']=[];
         }
         $response['categorias'] = self::selectSql('SELECT * FROM categorias');
         $response['unidadesMedidas'] = self::selectSql('SELECT * FROM unidade_medida');

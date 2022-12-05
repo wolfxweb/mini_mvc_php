@@ -118,6 +118,11 @@ class Route extends Bootstrap{
             'controller'=> 'ProdutoController',
             'action'=>'categoriasUnidadesMedidasProduto'   
         );
+        $routes['acao-produto'] =array(
+            'route'=> '/adm/acao-produto',
+            'controller'=> 'ProdutoController',
+            'action'=>'acaoProduto'   
+        );
        $this->setRoutes($routes);
     }
 }

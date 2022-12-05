@@ -25,18 +25,21 @@ $(document).ready(function () {
 
 function editProduto(id) {
   let canvaProduto = document.getElementById('offcanvasRight-produto')
-  console.log(id)
   let url = 'http://localhost:8000/adm/categorias-unidades-medidas-produto'
     axios.post(url, {
       pro_id: id,
     })
       .then(function (response) {
+        console.log(response);
        
         response.data.categorias.forEach(function (categoria) {
           let selecionado = false;
-          if(response.data.produto != undefined  && parseInt(categoria.cat_id) === parseInt(response.data.produto[0].cat_id)){
+          console.log(categoria);
+         if(response.data.produto != undefined ) {
+          if(parseInt(categoria.cat_id) === parseInt(response.data.produto[0].cat_id)){
             selecionado = true;
           }
+         }
           addOption(categoria.cat_id, categoria.cat_nome,selecionado,'categoria-select' ) 
         });
         response.data.unidadesMedidas.forEach(function (unidadeMedida) {
@@ -47,9 +50,7 @@ function editProduto(id) {
           addOption(unidadeMedida.unid_id, unidadeMedida.unid_nome, selecionado,'unidade-medida-select')
         });
         
-        console.log(response.data.produto[0])
         if(response.data.produto != undefined){
-          console.log(response.data.produto[0])
           document.getElementById("proId").value = response.data.produto[0].pro_id
           document.getElementById("prodNome").value = response.data.produto[0].prod_nome
           document.getElementById("prodDescricao").value = response.data.produto[0].prod_descricao
@@ -57,7 +58,7 @@ function editProduto(id) {
           
         }
 
-
+       
       })
       .catch(function (error) {
         console.log(error)
@@ -96,4 +97,24 @@ function closeCanvaProduto() {
   let canvaProduto = document.getElementById('offcanvasRight-produto')
   canvaProduto.classList.remove("show")
   window.location.reload();
+}
+function postProduto(){
+  event.preventDefault()
+ 
+
+ let url = 'http://localhost:8000/adm/acao-produto'
+    axios.post(url, {
+        pro_id         : document.getElementById("proId").value,
+        prod_nome      : document.getElementById("prodNome").value,
+        prod_descricao : document.getElementById("prodDescricao").value,
+        prod_preco     : document.getElementById("prodPreco").value,
+        unid_id        : document.getElementById("unidade-medida-select").value,
+        cat_id         : document.getElementById("categoria-select").value,
+    })
+    .then((response)=>{
+       toasty('Ação realizada com sucesso.')
+    })
+    .catch(function (error) {
+      toasty("Ocorreu erro durante o processo.","ERROR")
+    })
 }
