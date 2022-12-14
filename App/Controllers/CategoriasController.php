@@ -58,9 +58,39 @@ class CategoriasController  extends Action {
       //  $this->render('painel_adm/categoria_home');  
     }
     public function tabelaCategorias(){
-    echo   CategoriasClass::tabelaCategorias();
-       
+    echo   CategoriasClass::tabelaCategorias();     
+     }
 
-      
+     public function apiGetAllCategoria(){
+        /*
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: *");
+        header("Content-Type: application/json");*/
+        $response =[
+            'data'=>CategoriasClass::getCategorias()
+   
+        ];
+        echo json_encode($response);
+     }
+
+     public function apiGetCategoriaId(){
+       // $data  = json_decode(file_get_contents('php://input'), true);
+        $id = $_GET['id'];
+        $response =[];
+        if(!empty($id)){
+          $data = CategoriasClass::getCategorias($id);
+          if(!empty($data[0])){
+            $response['data']=$data;
+            $response['msg']=["Usuario encontrado"];
+          }else{
+            $response['data']=[];
+            $response['msg']=["Usuario nao encontrado"];
+          }
+        }else{
+            $response['data']=[];
+            $response['msg']=["Id do usuario nao informado"];
+        }
+
+        echo json_encode($response);
      }
 }

@@ -129,6 +129,17 @@ class Route extends Bootstrap{
             'controller'=> 'PedidoController',
             'action'=>'getTelaPedido'   
         );
+         //**pedido */
+         $routes['api-categoria'] =array(
+            'route'=> '/api-categoria',
+            'controller'=> 'CategoriasController',
+            'action'=>'apiGetAllCategoria'   
+        );
+        $routes['api-categoria-id'] =array(
+            'route'=> '/api-categoria-id',
+            'controller'=> 'CategoriasController',
+            'action'=>'apiGetCategoriaId'   
+        );
        $this->setRoutes($routes);
     }
 }
