@@ -90,7 +90,6 @@ class CategoriasController  extends Action {
             $response['data']=[];
             $response['msg']=["Id do usuario nao informado"];
         }
-
         echo json_encode($response);
      }
 }
